@@ -169,23 +169,6 @@ def GR_fun(self, UDVr, UDVl):
     Weight = np.prod(Weight_array)
     return GR, phase, Weight
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 def GR_fun1(self,  torch_UDVr, torch_UDVl):
     N_FL = self.N_FL
     Ndim = self.Lx * self.Ly * self.Norbs * self.Nlayers
