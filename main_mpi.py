@@ -335,4 +335,3 @@ def Main(self, This, tun_params):
 
     result = comm.bcast(result, root=0)
     return result
-    #return K, Nbin_eff,obs_scal_avg_blist, obs_eq_avg_blist, obs_geq_avg_blist, phase_avg_barray, Weight_avg_barray, deltaG_max, deltaG_mean, deltaP_max, deltaP_mean, t_total_elapsed, acceptance_rate
