@@ -1,1 +1,1 @@
-# Projector_AFQMC
+-  Projector_AFQMC for simulating interacting Hubbard model in d dimension
