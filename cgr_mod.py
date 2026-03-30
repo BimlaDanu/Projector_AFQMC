@@ -3,13 +3,7 @@ import scipy.linalg as la
 import copy
 #from wrap_mod import Wrap
 from wrap_mod import Wrap, Strat_once_do
-#import scipy.linalg
-#scipy.linalg.solve
-#import math
-#import os
-#import torch
-#import torch.linalg as tla
-#import time
+
 
 def CGRP(self, FL, FR):
     Ndim = FL['U'].shape[0]
@@ -217,8 +211,6 @@ def UDV_init(self, torch_Bk, torch_hv_mat, nstm, ltrot, stab_do, torch_P):
             # Update counter for stack
             k -= 1
     return torch_UDVst, torch_UDVl
-
-
 
 
 def wrap0(self, B, UDV):

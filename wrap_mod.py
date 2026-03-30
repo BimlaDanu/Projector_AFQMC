@@ -12,21 +12,6 @@ def Wrap(self, BL, F):
     F['V'] = inv_D @ np.dot(R, F['V'])
     return F
 
-
-def Wrap0(self, BL, F):
-    # BL is a matrix to be multiplied into current factorization F = U D V
-    B = np.dot(np.dot(BL, F['U']), F['D'])
-    F['U'], R = la.qr(B, mode='economic')
-    D_vec = np.diag(R).copy()
-    # ---- correction: protect zeros in D_vec ----
-    eps = 1e-300
-    D_vec[np.abs(D_vec) < eps] = eps
-    F['D'] = np.diag(D_vec)
-    inv_D = np.diag(1.0 / D_vec)
-    F['V'] = inv_D @ np.dot(R, F['V'])
-    return F
-
-
 def Strat_once_up(self, Bk, hv, spin, B, l_start_global):
     Ltrot = hv.shape[1]
     nf = int((1-spin)/2)

@@ -14,7 +14,6 @@ def Hamiltonian(self, This, tun_params):
         K =   hubbard_hopping_nf(self.Ham_t, self.Ham_tp, self.Ham_mu, self.Lx, self.Ly, self.N_FL, self.bc_x, self.bc_y, self.ladder)
         m_ord =0.
         _, _, P = trial_wavefunction_Hubbard(self.Ham_t, self.Lx, self.Ly, m_ord, self.Ham_mu, self.N_FL, self.N_part, self.bc_x, self.bc_y)
-        #_, _, P = trial_wavefunction_Hubbard(self.Ham_t, self.Lx, self.Ly, m_ord, self.Ham_mu, self.N_FL, n_part=-1)
     #elif self.ham_model == 'Periodic_Anderson':
                 
     if not tun_params:
@@ -23,11 +22,6 @@ def Hamiltonian(self, This, tun_params):
         Theta = This
 
     dtau = self.dtau
-    #Thtrot = round(Theta / dtau)
-    #Ltrot = 2 * Thtrot
-    #Ltrot = max(Ltrot, 2)
-    #dtau = 2 * Theta / Ltrot
-
 
     Thtrot = int(round(Theta / dtau))
     Thtrot = max(Thtrot, 1)
@@ -35,38 +29,7 @@ def Hamiltonian(self, This, tun_params):
     #Ltrot = Thtrot + 2 * Thtrot
     Ltrot =    self.slice_m + 2 * Thtrot
     
-    
-    #if  Ndim == 4:
-    #    K = np.asarray(K/2)
-    #    P = np.asarray(P/2)
-    #else:
-    #    K = np.asarray(K)
-    #    P = np.asarray(P)   
-    #print('K =',K)
-    #
-    #
-    #
-    #
-    #
-    #
-    #
-    #
-    #
-    #
-    #Bk = np.zeros((Ndim, Ndim, N_FL)) 
-    #inv_Bk =  np.zeros((Ndim, Ndim, N_FL)) 
-    #Bk_root = np.zeros((Ndim, Ndim, N_FL)) 
-    #inv_Bk_root = np.zeros((Ndim, Ndim, N_FL)) 
-    #for nf in range(N_FL):
-    #    Bk[:,:,nf] = la.expm(-K[:,:,nf] * dtau)
-    #    inv_Bk[:,:,nf] = la.expm(K[:,:,nf] * dtau)
-    #    Bk_root[:,:,nf] = la.expm(-K[:,:,nf] * dtau / 2)
-    #    inv_Bk_root[:,:,nf] = la.expm(K [:,:,nf]* dtau / 2)
-        
-        
 
-    #if not self.Adiabatic or self.Hint_tau:
-    #if not self.Adiabatic and not self.Hint_tau:
     if not self.Hint_tau:
         U_array = self.Ham_U * np.ones(Ltrot)
         lambda_array = np.arccosh(np.exp(U_array * dtau / 2))
@@ -81,10 +44,6 @@ def Hamiltonian(self, This, tun_params):
         #lambda_array, U_array, Ltrot = Lambdat_couplings(self, self.Adiabatic, Theta,  self.slice_m)
         lambda_array, U_array, Ltrot = Lambdat_couplings(self,  Adiabatic, Theta,  self.slice_m)
         #
-        #
-        #print('2')
-        #print(type(lambda_array), np.shape(lambda_array))
-        #print('lambda_array =',  lambda_array)
         plt.plot(lambda_array, marker = 'o', linestyle= 'none')
         plt.savefig(f'lambda_versus_U_{self.Adiabatic}_{Ltrot}.pdf')
         #plt.show()
@@ -125,11 +84,7 @@ def Hamiltonian(self, This, tun_params):
     
 
     Bk_t, inv_Bk_t, Bk_root_t, inv_Bk_root_t = time_dependent_hopping_nf(self, K, ti_array) 
-    #print('Bk_t.shape, inv_Bk_t.shape, Bk_root_t.shape, inv_Bk_root_t.shape =', Bk_t.shape, inv_Bk_t.shape, Bk_root_t.shape, inv_Bk_root_t.shape)
     return K, Bk_t, inv_Bk_t, Bk_root_t, inv_Bk_root_t, P, lambda_array, Ltrot
-    #return K, Bk, inv_Bk, Bk_root, inv_Bk_root, P, lambda_array, Ltrot
-
-
 
 
 def time_dependent_hopping_nf(self, K, ti):
@@ -154,8 +109,6 @@ def time_dependent_hopping_nf(self, K, ti):
             Bk_root_t[nl_count, :, :, nf] = la.expm(-K[:, :, nf] * t / 2)
             inv_Bk_root_t[nl_count, :, :, nf] = la.expm(K[:, :, nf] * t / 2)
     return Bk_t, inv_Bk_t, Bk_root_t, inv_Bk_root_t
-
-
 
 def Lambdat_couplings(self, Adiabatic, Theta, slice_m):
     beta = self.Beta
@@ -199,8 +152,6 @@ def Lambdat_couplings(self, Adiabatic, Theta, slice_m):
     U_array = (2.0 / dtau) * np.log(np.cosh(lambda_array))
     return lambda_array, U_array, Ltrot
 
-
-
 def Hopt_couplings(self, Adiabatic, Theta,   slice_m):
     beta = self.Beta
     dtau = self.dtau
@@ -213,9 +164,6 @@ def Hopt_couplings(self, Adiabatic, Theta,   slice_m):
     #Ltrot = Thtrot + 2 * Thtrot
     Ltrot =    slice_m + 2 * Thtrot
     #Ltrot = max(Ltrot, Nwrap)
-    # test dtau so total imaginary time is consistent
-    #dtau = (beta + Theta) / Ltrot
-    #print("beta, Theta, Ltrot, dtau =", beta, Theta, Ltrot, dtau)
     # measurements slices
     hamt_array = np.zeros(Ltrot, dtype=np.float64)
     hamt_flat = dtau   

@@ -1,12 +1,5 @@
 import numpy as np
 import scipy.linalg as la
-#import scipy.linalg
-#scipy.linalg.solve
-#import math
-#import os
-#import torch
-#import torch.linalg as tla
-#import time
 
 def Ana(self, Nbin_eff, K, obs_avg_scal_list, obs_avg_eq_list, obs_avg_geq_list, phase_avg_array,  Weight_avg_array):
     Ndim = self.Lx * self.Ly * self.Norbs * self.Nlayers
@@ -15,7 +8,6 @@ def Ana(self, Nbin_eff, K, obs_avg_scal_list, obs_avg_eq_list, obs_avg_geq_list,
     N_FL = self.N_FL
     
     energy_total_array = np.zeros(Nbin_meas, dtype = np.float32)
-   
     d_array = np.zeros(Nbin_meas, dtype = np.float32)
     Pot_array = np.zeros(Nbin_meas, dtype = np.float32)
     Kin_array = np.zeros(Nbin_meas, dtype = np.float32)
@@ -41,10 +33,6 @@ def Ana(self, Nbin_eff, K, obs_avg_scal_list, obs_avg_eq_list, obs_avg_geq_list,
             energy_total += np.sum(np.multiply(K[:, :, nf], GRC_avg_list[j][:, :, nf]))
         energy_total_array[j] = energy_total + self.Ham_U * nu_nd_sumoversites
 
-        # energy_total_array[j] = self.Ham_U * nu_nd_sumoversites + sum(
-        #     np.sum(np.multiply(K[:, :, nf], GRC_avg_list[j][:, :, nf]))
-        #    for nf in range(N_FL)
-        #)
         Pot_array[j] = Pot_avg_array_list[j]
         Kin_array[j] = Kin_avg_array_list[j]
         Eng_array[j] = Eng_avg_array_list[j]
@@ -52,9 +40,8 @@ def Ana(self, Nbin_eff, K, obs_avg_scal_list, obs_avg_eq_list, obs_avg_geq_list,
         Sz_array[j] =  Sz_avg_array_list[j]
         Rho_array[j] = Rho_avg_array_list[j]
            
-
-    print('energy_total_array = ',  energy_total_array)
-    print('d_array = ',d_array)
+    #print('energy_total_array = ',  energy_total_array)
+    #print('d_array = ',d_array)
     energy_total = np.mean(energy_total_array)
     energy_total_std = np.std(energy_total_array, ddof=1)/np.sqrt(Nbin_meas)
 
@@ -77,13 +64,6 @@ def Ana(self, Nbin_eff, K, obs_avg_scal_list, obs_avg_eq_list, obs_avg_geq_list,
     Rho_total = np.mean(Rho_array)
     Rho_total_std = np.std(Rho_array, ddof=1)/np.sqrt(Nbin_meas)
 
-    
-    #Eng_total = np.mean(Eng_array)
-    #Eng_std   = np.std(Eng_array, ddof=1)
-    #Eng_err   = Eng_std / np.sqrt(len(Eng_array))
-
-
-    
     observable_array = [energy_total, d, Pot_total, Kin_total, Eng_total,  Sz_total,   Rho_total]
     observable_std_array = [energy_total_std, d_std, Pot_std,  Kin_std, Eng_std,  Sz_total_std,  Rho_total_std]
     
@@ -93,17 +73,8 @@ def Ana(self, Nbin_eff, K, obs_avg_scal_list, obs_avg_eq_list, obs_avg_geq_list,
     
     abs_Weight = np.mean(Weight_avg_array)
     abs_Weight_std = np.std(Weight_avg_array, ddof=1)/np.sqrt(Nbin_meas)
-    #
-    #
-    #
-    #
-    #
-    #
-    # 
-   
+
     # ====== Start equal-time spin-spin correlations ======
-    # Infer spatial and internal dimensions directly from data
-    # Example shape: (Lx, Ly, 2)
     data_shape = obs_avg_eq_list[0, 0].shape
 
     spin_total_array = np.zeros((obs_eq_len, Nbin_meas, *data_shape), dtype=np.float64)
@@ -116,31 +87,6 @@ def Ana(self, Nbin_eff, K, obs_avg_scal_list, obs_avg_eq_list, obs_avg_geq_list,
     avg_spin_total = np.mean(spin_total_array, axis=1)
     # Std over bins
     std_spin_total = np.std(spin_total_array, axis=1, ddof=1)/np.sqrt(Nbin_meas)
-    #std_spin_total =  np.std(spin_total_array, axis=1, ddof=1)/np.sqrt(len(spin_total_array.shape[1]))
-    
-    
-    #std_spin_total = np.std(spin_total_array, axis=1, ddof=1)
-    #err_spin_total = std_spin_total / np.sqrt(Nbin_meas)
-    
-    # The bin-to-bin standard deviation is $\sigma(r) = \sqrt{\langle O^2 \rangle - \langle O\rangle^2 }$
-    # If bins are statistically independent the error bar on the mean should be:
-    # $ SEM (r) =\farc{\sigma(r)}{\sqrt{N_{bin}}}$ 
-    # Definitions of ddof $Var = \frac{1}{N-ddof} \sum (x_i-\bar{c})^2$
-    #1. It assumes independent samples
-    #2. It assumes the estimator is the sample mean
-    #3. It assumes roughly Gaussian fluctuations
-    # Jacknife: Jacknife is a resampling method
-    # 1. Remove one bin at a time
-    # 2. Recompute the observable
-    # 3. Measure how much it fluctuates
-    #a.  Works for nonlinear estimators
-    #b. Handles correlations better
-    #c. Automatically includes correct normalization
-    #d. Is robust when $\langle O \rangle$ is small 
-
-    
-    
-
     # observables
     avg_spinZZ_total = avg_spin_total[0]
     avg_spinXY_total = avg_spin_total[1]
@@ -171,52 +117,8 @@ def Ana(self, Nbin_eff, K, obs_avg_scal_list, obs_avg_eq_list, obs_avg_geq_list,
         avg_den_total_std,
         avg_pair_total_std 
     ]
-
-    #
-    #print("spin_total_array shape =", spin_total_array.shape)
-    #print("avg_spinZZ_total shape =", avg_spinZZ_total.shape)
-    #print("avg_spinXY_total shape =", avg_spinXY_total.shape)
-    #print("avg_spinT_total  shape =", avg_spinT_total.shape)
-    # ====== End spin-spin correlations part ======
-
-
-
-
-
-
-     #spin_total_array = np.zeros((3, Nbin_meas, self.Lx, self.Ly), dtype=np.float64)
-     #for obs in range(3):
-     #    for bin_idx in range(Nbin_meas):
-      #       spin_total_array[obs, bin_idx, :, :] = obs_avg_eq_list[obs, bin_idx, :, :]          
-    # Mean over bins (axis=1)
-     #avg_spin_total = np.mean(spin_total_array, axis=1)  # shape (3, Lx, Ly)
-    # Std over bins
-     #std_spin_total = np.std(spin_total_array, axis=1)   # shape (3, Lx, Ly)
-
-     #avg_spinZZ_total = avg_spin_total[0,:,:]
-     #avg_spinXY_total = avg_spin_total[1,:,:]
-     #avg_spinT_total =  avg_spin_total[2,:,:]
-    
-     #avg_spinZZ_total_std = std_spin_total [0,:,:]
-     #avg_spinXY_total_std = std_spin_total [1,:,:]
-     #avg_spinT_total_std =  std_spin_total [2,:,:]
-     #observable_eq_array  = [avg_spinZZ_total,  avg_spinXY_total,  avg_spinT_total]
-     #observable_eq_std_array  = [avg_spinZZ_total_std, avg_spinXY_total_std,  avg_spinT_total_std]
-     #print('avg_spinZZ_total[0] =',avg_spinZZ_total)
-     #print('avg_spinXY_total[0] =',avg_spinXY_total)
-     #print('avg_spinT_total[0] =',avg_spinT_total)
-    # end spin-spin correlations part
-    #
-    #
-    #
-    # 
-    #
-    #
-    #
-    # 
     return observable_array, observable_std_array, observable_eq_array, observable_eq_std_array, abs_phase, abs_phase_std,  abs_Weight,  abs_Weight_std
 
-    
 
 def jackknife_ratio(num, den):
     """
@@ -234,9 +136,6 @@ def jackknife_ratio(num, den):
     jk_mean = np.mean(jk, axis=0)
     jk_err = np.sqrt((N - 1) * np.mean((jk - jk_mean)**2, axis=0))
     return jk_mean, jk_err
-
-
-
 
 def autocorr(x, max_lag=None):
     """
@@ -257,7 +156,6 @@ def autocorr(x, max_lag=None):
     for lag in range(max_lag):
         acf[lag] = np.dot(x[:n-lag], x[lag:]) / (n-lag) / var
     return acf
-
 
 def integrated_autocorr_time(x, max_lag=None, cutoff=5):
     """
