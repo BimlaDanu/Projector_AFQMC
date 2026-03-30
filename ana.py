@@ -274,8 +274,3 @@ def integrated_autocorr_time(x, max_lag=None, cutoff=5):
             break
     return tau_int
 
-# calling
-#series = obs_time_series[:, rx, ry]
-#tau = integrated_autocorr_time(series)
-#print("tau_int =", tau)
-

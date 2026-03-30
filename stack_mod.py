@@ -2,10 +2,7 @@ import numpy as np
 #from wrap_mod import Strat_once_up, Strat_once_do, Wrap
 from wrap_mod import Strat_once_up, Strat_once_do, Wrap, Strat_once_up0, Strat_once_do0
 def Update_stack_up(self, Bk, hv, UDVst, len1, P, UDVr, FP_list, nst, nstm, l_start, l_end):
-        N_FL = self.N_FL
-        #hv = hv[:, -len1:]
-        #B0 = P if nst == 0 else 1
-        
+        N_FL = self.N_FL        
         # Update UDVr
         for nf in range(N_FL):
             spin = 1 - 2 * nf  # 1 for up, -1 for down
@@ -27,10 +24,7 @@ def Update_stack_up(self, Bk, hv, UDVst, len1, P, UDVr, FP_list, nst, nstm, l_st
         return UDVst, UDVr, UDVl, nst
 
 def Update_stack_do(self, Bk, hv, UDVst, len1, P, UDVl, FP_list, nst, nstm, l_start, l_end):
-    N_FL = self.N_FL
-    #hv = hv[:, :len1]
-    #B0 = P if nst == nstm - 2 else 1
-    
+    N_FL = self.N_FL    
     # Update UDVl
     for nf in range(N_FL):
         spin = 1 - 2 * nf  # 1 for up, -1 for down

@@ -103,10 +103,6 @@ def UpdateGR0(self, GR, hv, phase, rng,  Weight, l, acceptance_rate, count):
             spin = 1 - 2 * nf
             alpha_array[nf] = np.exp(-2 * spin * hv[site, l]) - 1
             w_ratio_array[nf] = 1 + alpha_array[nf] * (1 - GR[site, site, nf])
-            #
-            #
-            #alpha_array[nf] = np.exp(-2 * spin * hv[site, l]) - 1
-            #w_ratio_array[nf] = 1. +  alpha_array[nf] * (1. - GR[:,:,nf][site, site])
         
         # Total ratio
         w_ratio = np.prod(w_ratio_array)# w_ratio_up * w_ratio_down

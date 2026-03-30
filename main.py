@@ -60,7 +60,6 @@ def Main(self, This, tun_params):
     if not self.Corr_all:
         size_x = self.Lx if self.bc_x == "periodic" else 2 * self.Lx - 1
         size_y = self.Ly if self.bc_y == "periodic" else 2 * self.Ly - 1
-        #obs_eq_avg_blist = np.zeros((obs_eq_len, nbin_meas, self.Lx,  self.Ly), dtype = np.float32)
         obs_eq_avg_blist = np.zeros((obs_eq_len, nbin_meas, size_x,  size_y), dtype = np.float32)
     else:
         obs_eq_avg_blist = np.zeros((obs_eq_len, nbin_meas, Ndim,  Ndim), dtype = np.float32)
@@ -113,22 +112,8 @@ def Main(self, This, tun_params):
     #for i, fp in enumerate(FP_list):  
     #    print(f"FP state {i}: {fp}")
     
-    #GR, phase, UDVst, Weight = GR_init(self, Bk, hv, nstm, Ltrot, stab_up, P, FP)
+
     GR, phase, UDVst, Weight = GR_init(self, Bk, hv, nstm, Ltrot, stab_do, P, FP)
-    
-    #UDVst, UDVl1 = UDV_init(self, Bk, hv, nstm, Ltrot, stab_do, P)
-    #GR, phase = GR_fun1(self,   FP,  UDVl1)
-
-    
-    #print("DEBUG: type(GR) =", type(GR))
-    #if isinstance(GR, tuple):
-    #    print("DEBUG: len(GR) =", len(GR))
-    #    print("DEBUG: element types =", [type(x) for x in GR])
-    #print("DEBUG GR.shape =", GR.shape)
-    #print("DEBUG GR.ndim  =", GR.ndim)
-    #print("DEBUG GR.dtype =", GR.dtype)
-    #print('stab_up  =',stab_up)
-
 
     stab_count = 0
     
@@ -154,17 +139,14 @@ def Main(self, This, tun_params):
         obs_scal_phase_sum_list = np.zeros(obs_scal_len, dtype = np.float32)   
         size_x = self.Lx if self.bc_x == "periodic" else 2 * self.Lx - 1
         size_y = self.Ly if self.bc_y == "periodic" else 2 * self.Ly - 1
-        #obs_eq_phase_sum_list = np.zeros((obs_eq_len, self.Lx, self.Ly), dtype = np.float32)
         if not self.Corr_all:
             obs_eq_phase_sum_list = np.zeros((obs_eq_len, size_x,  size_y), dtype = np.float32)  
         else:
              obs_eq_phase_sum_list = np.zeros((obs_eq_len, Ndim,  Ndim), dtype = np.float32)  
   
-               
-            
             
         obs_geq_phase_sum_list = np.zeros((obs_geq_len, Ndim, Ndim, N_FL), dtype = np.float32) 
-        #obs_grad_phase_sum_list = anp.zeros((obs_grad_len, len_params), dtype = anp.float32) 
+     
         
         Nsweep = self.Nsweep
         for sweep in range(Nsweep):
@@ -175,8 +157,6 @@ def Main(self, This, tun_params):
             l_end = -1
             for l in range(Ltrot):
                 phase, acceptance_rate, propose_count = WrapGRup0(self, GR, Bk, inv_Bk, hv, phase, rng, Weight, l, acceptance_rate, propose_count)
-                #GR, hv, phase, Weight, acceptance_rate, propose_count = WrapGRup(self, GR, Bk, inv_Bk, hv, phase, rng, Weight, l, acceptance_rate, propose_count)
-                #_, _, phase, _, acceptance_rate, propose_count = WrapGRup(self, GR, Bk, inv_Bk, hv, phase, rng, Weight, l, acceptance_rate, propose_count)
                 if stab_up[l]:
                     stab_count += 1
                     len1 = len_array[nst]
@@ -184,14 +164,8 @@ def Main(self, This, tun_params):
                     l_start = l_end + 1
                     l_end = l
                     #print('1, l, len1, nst, nstm, stab_up[l],l_start,l_end  =', l, len1, nst, nstm, stab_up[l],l_start,l_end)
-                    #UDVst, UDVr, UDVl, nst = Update_stack_up(self, Bk, hv, UDVst, len1, P, UDVr, FP_list, nst, nstm)
-                    #UDVst, UDVr, UDVl, nst = Update_stack_up(self, Bk, hv[:,l_start:(l_end + 1)], UDVst, len1, P, UDVr, FP_list, nst, nstm)
-                    #_, _, UDVl, nst = Update_stack_up(self, Bk, hv[:,l_start:(l_end + 1)], UDVst, len1, P, UDVr, FP_list, nst, nstm, l_start, l_end)
                     _, _, UDVl, nst = Update_stack_up(self, Bk[l_start:(l_end + 1), :, :, :], hv[:,l_start:(l_end + 1)], UDVst, len1, P, UDVr, FP_list, nst, nstm, l_start, l_end)
 
-
-
-                    #GR, phase, Weight = GR_fun(self, UDVr, UDVl)
                     # Calculate the equal-time Green's function from stack
                     GR_test = GR
                     phase_test = phase
@@ -214,11 +188,8 @@ def Main(self, This, tun_params):
             
             for l in range(Ltrot - 1, -1, -1):
                 phase, acceptance_rate, propose_count =   WrapGRdo0(self, GR, Bk, inv_Bk, hv, phase, rng, Weight,  l, acceptance_rate, propose_count)
-                #GR, hv, phase, Weight, acceptance_rate, propose_count  =   WrapGRdo(self, GR, Bk, inv_Bk, hv, phase, rng, Weight,  l, acceptance_rate, propose_count)
-                #_, _, phase, _, acceptance_rate, propose_count  =   WrapGRdo(self, GR, Bk, inv_Bk, hv, phase, rng, Weight,  l, acceptance_rate, propose_count)
-              
-                #if stab_up[(l-1)%Ltrot]:
-                #if stab_up[(l-1)]:
+  
+            
                 if stab_do[(l)]:
                     stab_count += 1
                     len1 = len_array[nst + 1]
@@ -226,14 +197,9 @@ def Main(self, This, tun_params):
                     l_end = l_start - 1
                     l_start = l
                     
-                    #print('2, l, len1, nst, nstm, stab_do[l] ,l_start,l_end =', l, len1, nst,  nstm, stab_do[l],l_start,l_end)
-                    #UDVst, UDVr, UDVl, nst = Update_stack_do(self, Bk, hv, UDVst, len1, P, UDVl, FP_list, nst, nstm)
-                    #UDVst, UDVr, UDVl, nst = Update_stack_do(self, Bk, hv[:,l_start:(l_end + 1)], UDVst, len1, P, UDVl, FP_list, nst, nstm)
-                    #_, UDVr, _, nst = Update_stack_do(self, Bk, hv[:,l_start:(l_end + 1)], UDVst, len1, P, UDVl, FP_list, nst, nstm, l_start, l_end)
                     _, UDVr, _, nst = Update_stack_do(self, Bk[l_start:(l_end + 1),:,:,:], hv[:,l_start:(l_end + 1)], UDVst, len1, P, UDVl, FP_list, nst, nstm, l_start, l_end)
                     
                     
-                    #GR, phase, Weight = GR_fun(self, UDVr, UDVl)
                     GR_test = GR
                     phase_test = phase
                     Weight_test = Weight
@@ -241,7 +207,7 @@ def Main(self, This, tun_params):
                     deltaG_max, deltaG_mean = Control_precisionG(self, GR, GR_test, deltaG_threshold, deltaG_max, deltaG_mean, stab_count)
                     deltaP_max, deltaP_mean = Control_precisionP(self, phase, phase_test, deltaP_max, deltaP_mean, stab_count)
 
-                #if bin_count >= 0 and l-1 == lobs:
+    
                 if bin_count >= 0 and l == lobs+1:
                     ##################### MEASUREMENTS FOR CURRENT AUXILIARY FIELD CONFIGURATION  #####################
                     if self.Sym:
@@ -278,8 +244,5 @@ def Main(self, This, tun_params):
         if (CPU_MAX > 0) and (t_total_elapsed + 1.5 * t_bin_elapsed > 3600 * CPU_MAX):
             Nbin_eff = bin
             return
-        
-    #Save hv to the output MC config file to allow resuming later
-    #anp.save(config_out, hv)
-    #print(f"Final field configuration saved to '{config_out}'.")
+
     return K, Nbin_eff,obs_scal_avg_blist, obs_eq_avg_blist, obs_geq_avg_blist, phase_avg_barray, Weight_avg_barray, deltaG_max, deltaG_mean, deltaP_max, deltaP_mean, t_total_elapsed, acceptance_rate
