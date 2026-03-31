@@ -507,19 +507,3 @@ def plot_eigenvalues(eigenvalues):
     #lattice_type = 'Bilayer_Honeycomb'
     #lattice_type = 'Bilayer_Kagome'
 
-#    if  lattice_type == 'Bilayer_Square' or   lattice_type == 'Bilayer_Triangular':
-#        norb = 1
-#    elif lattice_type == 'Bilayer_Honeycomb':
-#         norb = 2
-#    elif lattice_type == 'Bilayer_Kagome':
-#         norb = 3
-          
-    #ham = call_Hamiltonian_Bilayer(lattice_type, t, t_prime, V_ex,  mu_f, mu_c, Lx, Ly, norb, nlayer, Per)
-    #print('ham.shape =', ham.shape)
-    #print_hamiltonian(ham)
-    #eigenvalues, _ = np.linalg.eigh(ham)
-    #print(eigenvalues)
-   # plot_eigenvalues(eigenvalues)
-
-
-

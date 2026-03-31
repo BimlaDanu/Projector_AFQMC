@@ -364,14 +364,3 @@ def torch_trial_wavefunction_Hubbard(t, Lx, Ly, m_ord, mu, NFL, n_part,  bc_x, b
     #epsl = 0.
     #spin = -0
     #ham_mf =Hubbard_meanfield_ham(t, t_prime, mu, Lx, Ly, m_ord, Delta_ord)
-    #ham_mf = Hubbard_ham_morder(t, Lx, Ly, m_ord)
-    #print(ham_mf.shape)
-    #print(ham_mf)
-    #HP = Hubbard_projector_mord_square(t, Lx, Ly, epsl, m_ord, spin)
-    #print(HP.shape)
-    #print(HP)
-    
-    #HPS, P0, P = generate_hubbard_data(t, Lx, Ly, epsl, m_ord, mu, NFL)
-    #print("HPS (Hamiltonians):", HPS)
-    #print("P0 (Eigenvectors):", P0)
-    #print("P (Projections):", P)

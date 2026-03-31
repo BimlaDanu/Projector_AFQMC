@@ -40,8 +40,6 @@ def Main(self, This, tun_params):
     #params = comm.bcast(params, root=0)
     This   = comm.bcast(This, root=0)
     # ===================================================================
-
-
     
     deltaG_threshold = 10
     obs_scal_len = 7
@@ -72,8 +70,6 @@ def Main(self, This, tun_params):
     end_bin = start_bin + bins_per_rank + (1 if rank < remainder else 0)
     local_nbin = max(0, end_bin - max(start_bin, N_skip))
     # ====================================================
-    
-    
     
     phase_avg_barray = np.zeros(local_nbin, dtype = np.float32)    
     Weight_avg_barray = np.zeros(local_nbin, dtype = np.float32)    
@@ -137,8 +133,7 @@ def Main(self, This, tun_params):
         
     #for i, fp in enumerate(FP_list):  
     #    print(f"FP state {i}: {fp}")
-    
-    #GR, phase, UDVst, Weight = GR_init(self, Bk, hv, nstm, Ltrot, stab_up, P, FP)
+
     GR, phase, UDVst, Weight = GR_init(self, Bk, hv, nstm, Ltrot, stab_do, P, FP)
 
     stab_count = 0
@@ -295,7 +290,6 @@ def Main(self, This, tun_params):
         
     else:
         result = None
-        
 
     result = comm.bcast(result, root=0)
     return result

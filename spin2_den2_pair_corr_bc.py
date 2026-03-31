@@ -5,7 +5,6 @@ from hopping_ham_mod import square_lattice
 def mod(a, b):
     return (a + b) % b
 
-
 def get_displacement(xi, yi, xj, yj, Lx, Ly, bc_x, bc_y):
     dx = xj - xi
     dy = yj - yi
@@ -292,13 +291,3 @@ def pair_corr_bc(GR, GRC, Lx, Ly,
 
     return P_r
 
-
-#ZZ, ZXY, Z = spin_spin_corr_bc(GR, GRC, Lx, Ly, self.bc_x, self.bc_y)
-# Open / Open
-#ZZ, ZXY, Z = spin_spin_corr_bc(GR, GRC, Lx, Ly, bc_x="open", bc_y="open")
-# Periodic / Periodic
-#ZZ, ZXY, Z = spin_spin_corr_bc(GR, GRC, Lx, Ly, bc_x="periodic", bc_y="periodic")
-# Open / Periodic
-#ZZ, ZXY, Z = spin_spin_corr_bc(GR, GRC, Lx, Ly, bc_x="open", bc_y="periodic")
-# Periodic / Open
-#ZZ, ZXY, Z = spin_spin_corr_bc(GR, GRC, Lx, Ly, bc_x="periodic", bc_y="open")

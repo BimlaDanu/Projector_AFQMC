@@ -299,12 +299,3 @@ def Update_stack_do0(self, Bk, hv, UDVst, len1, P, UDVl, FP_list, nst, nstm):
     return UDVst, UDVr, UDVl, nst
 
 
-
-#def Strat_once_do(self, Bk, hv, spin, Bdag):
-#    Ltrot = hv.shape[1]
-#    nf = int((1-spin)/2)
-#    for l in range(Ltrot-1, -1, -1):
-#        Bv = np.diag(np.exp(spin * hv[:,  l]))
-#        Bdag = Bk[l,:,:,nf] @ np.dot(Bv, Bdag)
-#    return Bdag
-

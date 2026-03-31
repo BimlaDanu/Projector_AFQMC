@@ -28,8 +28,6 @@ def check_for_nan_inf(self, matrix, name="matrix"):
         if np.isnan(matrix).any() or np.isinf(matrix).any():
                 raise ValueError(f"Input matrix {name} contains NaN or Inf values.")
 
-
-
  
 def main_run(self):
         Ndim = self.Lx * self.Ly * self.Norbs * self.Nlayers
@@ -346,11 +344,4 @@ def main_run(self):
         plt.savefig(os.path.join(folder_name,f'Rho_{txtstr_np}.pdf'), bbox_inches='tight')
         #plt.show()
         plt.clf()
-        
-        #print('theta_array, energy_total_array, energy_total_std_array =',theta_array, energy_total_array, energy_total_std_array)
-        #print('theta_array, energy_total_array, energy_total_std_array =',theta_array, energy_total_array, energy_total_std_array)
-        #print('theta_array, Sz_total_array, Sz_total_std_array =',theta_array, Sz_total_array, Sz_total_std_array)
-        #print('theta_array, Rho_total_array, Rho_total_std_array =',theta_array, Rho_total_array, Rho_total_std_array)
-        
 
-        

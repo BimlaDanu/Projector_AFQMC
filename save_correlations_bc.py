@@ -29,9 +29,6 @@ def get_real_displacement1(dx, dy, Lx, Ly, bc_x, bc_y):
 
     return dx_p, dy_p
 
-
-
-
 def get_real_displacement(dx, dy, Lx, Ly, bc_x, bc_y):
     """
     Convert array indices (dx,dy) into physical displacement
@@ -129,10 +126,6 @@ def save_spin_correlations_bc(self,
         avg_spinT_std
     )
     
-    
-    
-    
-    
 def save_density_correlations_bc(self,
                                  DD_array,
                                  DD_std_array,
@@ -181,8 +174,6 @@ def save_density_correlations_bc(self,
                     f"{std: .6f}\n"
                 )
                 
-
-
 def save_pair_correlations_bc(self,
                               P_array,
                               P_std_array,
