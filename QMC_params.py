@@ -1,6 +1,5 @@
 import numpy as np
 #from  Params_QMC_Sim_regular import *
-
 class ModelParams():
     def __init__(self):
         # For regular Lattices
@@ -131,10 +130,6 @@ class AnaParams():
         self.N_Cov: int = 0  # Flag of covariance matrix
         self.N_rebin = 1
 Ana_obj = AnaParams()
-
-
-
-
 
 class QMC_Run_Params():
     def __init__(self, model_obj, latt_obj, ham_obj, QMC_obj, Ana_obj):
