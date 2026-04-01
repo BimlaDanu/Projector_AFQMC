@@ -196,8 +196,6 @@ def Hubbard_ham_morder_ladder(t, Lx, Ly, mu, m_ord, spin, bc_x, bc_y):
 
     return ham
 
-
-
 def Hubbard_hop_ham1(t, t_prime, mu, Lx, Ly):
     ham = np.zeros((Lx * Ly, Lx * Ly), dtype=float)
     loc, label = square_lattice(Lx, Ly)
@@ -289,9 +287,6 @@ def Hubbard_ham_morder1(t, Lx, Ly, m_ord):
             ham[s1_down, s1_down] -=  (-1)**(m+n) * m_ord
     return ham
 
-
-
-
 def hubbard_hopping_nf(t, t_prime, mu, Lx, Ly, NFL, bc_x, bc_y, ladder):
     """
     Generate flavor depency in Hopping term of Hubbard Hamiltonians.
@@ -321,25 +316,3 @@ def hubbard_hopping_nf(t, t_prime, mu, Lx, Ly, NFL, bc_x, bc_y, ladder):
             Ht_nf[:, :, nf] =  Hubbard_hop_ham(t, t_prime, mu, Lx, Ly, bc_x="periodic", bc_y="open")
             
     return Ht_nf
-#if __name__ == "__main__":
-   # t = 1.
-    #t_prime = 0.
-    #Lx = 2
-    #Ly = 2
-    #mu = 0.
-    #m_ord = 2.
-    #Delta_ord = 0.
-    #epsl = 0.
-    #spin = -0
-    #ham_mf =Hubbard_meanfield_ham(t, t_prime, mu, Lx, Ly, m_ord, Delta_ord)
-    #ham_mf = Hubbard_ham_morder(t, Lx, Ly, m_ord)
-    #print(ham_mf.shape)
-    #print(ham_mf)
-    #HP = Hubbard_projector_mord_square(t, Lx, Ly, epsl, m_ord, spin)
-    #print(HP.shape)
-    #print(HP)
-    
-    #HPS, P0, P = generate_hubbard_data(t, Lx, Ly, epsl, m_ord, mu, NFL)
-    #print("HPS (Hamiltonians):", HPS)
-    #print("P0 (Eigenvectors):", P0)
-    #print("P (Projections):", P)

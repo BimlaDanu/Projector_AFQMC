@@ -28,8 +28,6 @@ def Strat_once_do(self, Bk, hv, spin, Bdag, l_start_global):
         Bdag = Bk[l,:,:,nf] @ np.dot(Bv, Bdag)
     return Bdag
 
-
-
 def Strat_once_up0(self, Bk, hv, spin, B, l_start_global):
     nf = int((1-spin)/2)
     slice_len = hv.shape[1]

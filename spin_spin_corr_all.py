@@ -91,9 +91,6 @@ def pair_pair_corr_full_bc(GR, GRC, Lx, Ly, pairing='s'):
             delta_j = GRC[j, j, 0] * GRC[j, j, 1]  # local pair
             P_r[i, j] = form_factor(i, j, pairing) * delta_i * np.conj(delta_j)
     return P_r
-
-
-
 # --------------------------------------------------------
 # Save spin-spin correlations with distances r
 # --------------------------------------------------------
@@ -228,7 +225,6 @@ def save_spin_correlations_full_r_1(self,
         avg_spinT_std
     )
     
-    
 def save_den_correlations_full_r_1(self, DD_array, DD_std_array, Ndim, bc_x, bc_y, epoch):
     """
     Save full Nsite x Nsite correlations.
@@ -258,9 +254,6 @@ def save_den_correlations_full_r_1(self, DD_array, DD_std_array, Ndim, bc_x, bc_
     write_file(
         f"density-density_Ndim{Ndim}_NPART{self.N_part}_U{self.Ham_U}_epoch{epoch}_file.txt",
         DD_array, DD_std_array)
-    
-    
-
 
 def save_pair_correlations_full_r_1(self, P_array, P_std_array, Ndim, bc_x, bc_y, epoch, pairing='s'):
     """

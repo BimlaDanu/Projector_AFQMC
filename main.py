@@ -215,8 +215,6 @@ def Main(self, This, tun_params):
                     else:
                         GR_tilde = GR
                     obs_scal_avg_list, obs_eq_avg_list, obs_geq_avg_list,  obs_scal_phase_sum_list, obs_eq_phase_sum_list, obs_geq_phase_sum_list, phase_sum, Weight_sum, N_meas = Obser(self, GR_tilde, phase, Weight, obs_scal_phase_sum_list, obs_eq_phase_sum_list, obs_geq_phase_sum_list, phase_sum, Weight_sum, obs_scal_len, obs_eq_len, obs_geq_len,  N_meas)
-
-
         
         if bin_count >= 0:
             
@@ -244,5 +242,4 @@ def Main(self, This, tun_params):
         if (CPU_MAX > 0) and (t_total_elapsed + 1.5 * t_bin_elapsed > 3600 * CPU_MAX):
             Nbin_eff = bin
             return
-
     return K, Nbin_eff,obs_scal_avg_blist, obs_eq_avg_blist, obs_geq_avg_blist, phase_avg_barray, Weight_avg_barray, deltaG_max, deltaG_mean, deltaP_max, deltaP_mean, t_total_elapsed, acceptance_rate

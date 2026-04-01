@@ -46,8 +46,7 @@ def Obser(self,  GR, phase, Weight, obs_scal_phase_sum_list, obs_eq_phase_sum_li
         Weight_sum += np.log(Weight)
         phase_sum = ((N_meas - 1) * phase_sum + sign) / N_meas
         
-        
-        
+
         #Weight_sum += Weight
 
         # Calculate GRC and n_list for all flavors (nf)

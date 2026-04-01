@@ -352,15 +352,3 @@ def torch_trial_wavefunction_Hubbard(t, Lx, Ly, m_ord, mu, NFL, n_part,  bc_x, b
     return HPS, P0, P
 
 
-
-#if __name__ == "__main__":
-   # t = 1.
-    #t_prime = 0.
-    #Lx = 2
-    #Ly = 2
-    #mu = 0.
-    #m_ord = 2.
-    #Delta_ord = 0.
-    #epsl = 0.
-    #spin = -0
-    #ham_mf =Hubbard_meanfield_ham(t, t_prime, mu, Lx, Ly, m_ord, Delta_ord)

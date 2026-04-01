@@ -22,8 +22,6 @@ def Ut_couplings(self, adiabatic_on, Theta):
     #print('lambda_array =', l, lambda_array)
     return lambda_array, U_array, Ltrot
 
-
-
 def time_dependent_int(n, beta, Ur, dtau, hirsch):
     hi = np.zeros(n)
     ti = np.zeros(2*n+1)
