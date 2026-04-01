@@ -4,7 +4,6 @@ import copy
 #from wrap_mod import Wrap
 from wrap_mod import Wrap, Strat_once_do
 
-
 def CGRP(self, FL, FR):
     Ndim = FL['U'].shape[0]
     id = np.identity(Ndim, dtype = np.float32)
@@ -43,7 +42,6 @@ def Stackr(self, Bk, hv, spin, nstm, Ltrot, stab_up, P):
             j += 1
     return stack
 
-
 def Stackr1(self, Bk, hv, spin, nstm, Ltrot, stab_up, P):
     # Initialize stack
     stack = [0. for _ in range(nstm)]
@@ -70,9 +68,6 @@ def Stackr1(self, Bk, hv, spin, nstm, Ltrot, stab_up, P):
         l += 1  # move to next time slice
     # Return only filled stack entries
     return stack[:j]
-
-
-
 
 def Stackr0(self, Bk, hv, spin, nstm, Ltrot, stab_up, P):
     #stack = [0.]*nstm  # Use a list to store the dictionaries
@@ -128,7 +123,6 @@ def GR_init(self, Bk, hv, nstm, Ltrot, stab_up, P, FP):
     Weight = np.prod(Weight_array)
     return GR, phase, UDVst, Weight
 
-
 def GR_init0(self, Bk, hv, nstm, Ltrot, stab_up, P, FP):
     N_FL = self.N_FL
     Ndim = self.Lx * self.Ly * self.Norbs * self.Nlayers
@@ -173,7 +167,6 @@ def GR_fun1(self,  torch_UDVr, torch_UDVl):
     torch_phase = np.prod(torch_phase_array)
     return torch_GR, torch_phase
 
-
 def UDV_init(self, torch_Bk, torch_hv_mat, nstm, ltrot, stab_do, torch_P):
     N_FL = self.N_FL
     # Initialization
@@ -212,7 +205,6 @@ def UDV_init(self, torch_Bk, torch_hv_mat, nstm, ltrot, stab_do, torch_P):
             k -= 1
     return torch_UDVst, torch_UDVl
 
-
 def wrap0(self, B, UDV):
     B = (B @ UDV['U']) @ np.diag(UDV['D'])
     # QR decomposition
@@ -244,7 +236,6 @@ def cGRP0(self, UDVr, UDVl):
     det_ULdag_UR = la.det(ULdag_UR)
     phase = det_ULdag_UR / np.abs(det_ULdag_UR)
     return GR, phase
-
 
 def cGRP00(self, torch_UDVr, torch_UDVl):
     # G = id - BR (BL BR)^-1 BL
