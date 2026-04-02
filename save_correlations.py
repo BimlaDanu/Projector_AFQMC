@@ -155,8 +155,6 @@ def save_pair_correlations_placeholder(self, P_array, P_std_array, Ndim, epoch, 
                 std = P_std_array[dx, dy] if P_std_array is not None else 0.0
                 f.write(f"{dx} {dy} {r:.6f} {corr.real:.6f} {corr.imag:.6f} {std.real:.6f} {std.imag:.6f}\n")
 
-
-
 def save_spin_correlations(self, observable_eq_array, observable_eq_std_array, Ndim):
     """
     Save r-resolved spin-spin correlations (ZZ, XY, T).
@@ -237,8 +235,6 @@ def save_spin_correlations(self, observable_eq_array, observable_eq_std_array, N
                 std  = avg_spinT_total_std[dx, dy]
                 f.write(f"{dx} {dy} {r:.6f} {corr:.6f} {std:.6f}\n")
 
-
-
 def save_density_correlations(self, DD_array, DD_std_array=None, Ndim=0):
     """
     Save r-resolved density-density correlations.
@@ -271,7 +267,6 @@ def save_density_correlations(self, DD_array, DD_std_array=None, Ndim=0):
                 corr = DD_array[dx, dy]
                 std = DD_std_array[dx, dy] if DD_std_array is not None else 0.0
                 f.write(f"{dx} {dy} {r:.6f} {corr:.6f} {std:.6f}\n")
-
 
 def save_pair_correlations(self, P_array, P_std_array=None, Ndim=0, pairing='s'):
     """

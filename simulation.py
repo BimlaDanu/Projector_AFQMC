@@ -12,8 +12,6 @@ from save_correlations_bc import *
 from  spin_spin_corr_all import *
 #from main import Main
 #from ana import Ana
-
-
 #%matplotlib inline
 
 def save_data(self, filename, param_x, O_y):

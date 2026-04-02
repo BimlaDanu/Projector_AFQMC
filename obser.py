@@ -3,11 +3,9 @@ import scipy.linalg as la
 from hopping_ham_mod import hubbard_hopping_nf
 from trial_wavefunction_mod import trial_wavefunction_Hubbard
 from hopping_ham_mod import square_lattice
-
 from spin2_den2_pair_corr import *
 from spin2_den2_pair_corr_bc import *
 from  spin_spin_corr_all import *
-#from  Hubbard_mord import *
 #import scipy.linalg
 #scipy.linalg.solve
 #import math

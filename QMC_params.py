@@ -11,7 +11,6 @@ class ModelParams():
         #self.lattice_type: str = 'Kagome'
         #self.lattice_type: str = '1d_chain'
         
-        
         #For Bilayer Lattices
         #self.ham_model: str = 'Periodic_Anderson' 
         #self.lattice_type: str = 'Bilayer_Square'

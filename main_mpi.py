@@ -98,17 +98,8 @@ def Main(self, This, tun_params):
     stab_do = np.roll(stab_up, 1)
     #stab_do = np.roll(stab_up, Ltrot % Nwrap)
     len_array = np.diff(np.insert(np.where(stab_up)[0], 0, -1))
-    #print('  nstm , stab_up=',  nstm , stab_up)
-
     # -------------------------------
-    #nstm = len(len_array)
-    #print('nstm,len(len_array) =',nstm,len(len_array))
-    
-    
-    #len_array = np.ones(nstm) * Nwrap   
-    #len_array[-1] = Ltrot - (nstm - 1) * Nwrap
-    #len_array = len_array.astype(np.int32)
-    
+
     
     # Initialize auxiliary field with random configuration 
     # ================= RNG (rank-dependent) =================
@@ -205,7 +196,6 @@ def Main(self, This, tun_params):
                         GR_tilde = GR
                     obs_scal_avg_list, obs_eq_avg_list, obs_geq_avg_list,  obs_scal_phase_sum_list, obs_eq_phase_sum_list, obs_geq_phase_sum_list, phase_sum, Weight_sum, N_meas= Obser(self, GR_tilde, phase, Weight, obs_scal_phase_sum_list, obs_eq_phase_sum_list, obs_geq_phase_sum_list, phase_sum, Weight_sum, obs_scal_len, obs_eq_len, obs_geq_len,  N_meas)
 
-
             #UDVl = F1_list.copy()
             UDVl = deepcopy(F1_list)
             l_start = Ltrot
@@ -236,8 +226,6 @@ def Main(self, This, tun_params):
                         GR_tilde = GR
                     obs_scal_avg_list, obs_eq_avg_list, obs_geq_avg_list,  obs_scal_phase_sum_list, obs_eq_phase_sum_list, obs_geq_phase_sum_list, phase_sum, Weight_sum, N_meas = Obser(self, GR_tilde, phase, Weight, obs_scal_phase_sum_list, obs_eq_phase_sum_list, obs_geq_phase_sum_list, phase_sum, Weight_sum, obs_scal_len, obs_eq_len, obs_geq_len,  N_meas)
 
-
-        
         if bin_count >= 0:
             
             phase_avg_barray[local_bin_index] = phase_sum #/ Nsweep

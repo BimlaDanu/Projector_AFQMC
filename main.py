@@ -50,8 +50,6 @@ def Main(self, This, tun_params):
     
     K, Bk, inv_Bk, Bk_root, inv_Bk_root, P, lambda_array, Ltrot = Hamiltonian(self, This, tun_params)
     
-    #print('K =',K)
-    
     phase_avg_barray = np.zeros(nbin_meas, dtype = np.float32)    
     Weight_avg_barray = np.zeros(nbin_meas, dtype = np.float32)    
 
@@ -83,22 +81,13 @@ def Main(self, This, tun_params):
     len_array = np.diff(np.insert(np.where(stab_up)[0], 0, -1))
     #print('  nstm , stab_up=',  nstm , stab_up)
 
-    # -------------------------------
-    #nstm = len(len_array)
-    #print('nstm,len(len_array) =',nstm,len(len_array))
-    
-    
-    #len_array = np.ones(nstm) * Nwrap   
-    #len_array[-1] = Ltrot - (nstm - 1) * Nwrap
-    #len_array = len_array.astype(np.int32)
-    
+    # -------------------------------    
     # Initialize auxiliary field with random configuration (row for site number, column for time slice)
     rng = np.random.default_rng()
     HS_field = 2 * rng.integers(2, size = [Ndim, Ltrot]) - 1 # Convert [0 1] to [-1 1]
     hv = HS_field @ np.diag(lambda_array)
     #print('hv.shape, HS_field.shape, lambda_array.shape =',hv.shape, HS_field.shape, lambda_array.shape)
     
-
     F1 = {'U': 1., 'D': 1., 'V': 1.}
     #F1_list = np.full(n_fl, F1)
     F1_list = [F1.copy() for _ in range(N_FL)]
@@ -112,7 +101,6 @@ def Main(self, This, tun_params):
     #for i, fp in enumerate(FP_list):  
     #    print(f"FP state {i}: {fp}")
     
-
     GR, phase, UDVst, Weight = GR_init(self, Bk, hv, nstm, Ltrot, stab_do, P, FP)
 
     stab_count = 0
@@ -188,7 +176,6 @@ def Main(self, This, tun_params):
             
             for l in range(Ltrot - 1, -1, -1):
                 phase, acceptance_rate, propose_count =   WrapGRdo0(self, GR, Bk, inv_Bk, hv, phase, rng, Weight,  l, acceptance_rate, propose_count)
-  
             
                 if stab_do[(l)]:
                     stab_count += 1
@@ -198,7 +185,6 @@ def Main(self, This, tun_params):
                     l_start = l
                     
                     _, UDVr, _, nst = Update_stack_do(self, Bk[l_start:(l_end + 1),:,:,:], hv[:,l_start:(l_end + 1)], UDVst, len1, P, UDVl, FP_list, nst, nstm, l_start, l_end)
-                    
                     
                     GR_test = GR
                     phase_test = phase

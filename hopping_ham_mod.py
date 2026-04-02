@@ -157,8 +157,6 @@ def Hubbard_ham_morder_ladder(t, Lx, Ly, mu, m_ord, spin, bc_x, bc_y):
             ham[s1_up, s1_up] -= mu
             ham[s1_up, s1_up] += spin * m_ord * (-1)**(m+n)
             
-            
-            
             s1_down =  s1_up + m * Ly + n
             # ---- x-direction neighbor ----
             if m + 1 < Lx:
