@@ -1,7 +1,6 @@
 import numpy as np
 from hopping_ham_mod import square_lattice
 
-
 def mod(a, b):
     return (a + b) % b
 
@@ -34,7 +33,6 @@ def get_displacement(xi, yi, xj, yj, Lx, Ly, bc_x, bc_y):
         idy = dy + (Ly - 1)
     else:
         raise ValueError("bc_y must be 'open' or 'periodic'")
-
     return idx, idy
 
 
@@ -48,7 +46,6 @@ def spin_spin_corr_bc(GR, GRC, Lx, Ly,
 
     Assumes site index = m*Ly + n
     """
-
     Nsite = Lx * Ly
 
     # --- allocate displacement-resolved arrays ---
@@ -118,7 +115,6 @@ def spin_spin_corr_bc(GR, GRC, Lx, Ly,
     ZXY_r[mask] /= count[mask]
 
     ZZ2XY_r = ZZ_r + 2.0 * ZXY_r
-
     return ZZ_r, ZXY_r, ZZ2XY_r
 
 def spin_spin_corr_bc1(GR, GRC, Lx, Ly, bc_x="periodic", bc_y="periodic"):
@@ -168,12 +164,7 @@ def spin_spin_corr_bc1(GR, GRC, Lx, Ly, bc_x="periodic", bc_y="periodic"):
     ZXY_r[mask] /= count[mask]
 
     ZZ2XY_r = ZZ_r + 2.0 * ZXY_r
-
     return ZZ_r, ZXY_r, ZZ2XY_r
-
-
-
-
 
 def spin_spin_corr_full_bc(GR, GRC, Lx, Ly):
     Nsite = Lx * Ly
@@ -193,7 +184,6 @@ def spin_spin_corr_full_bc(GR, GRC, Lx, Ly):
                 GRC[i, j, 0] * GR[i, j, 1]
               + GRC[i, j, 1] * GR[i, j, 0]
             )
-
     ZZ2XY = ZZ + 2.0 * ZXY
     return ZZ, ZXY, ZZ2XY
 
@@ -229,7 +219,6 @@ def density_density_corr_bc(GR, GRC, Lx, Ly, bc_x="periodic", bc_y="periodic"):
 
     mask = count > 0
     DD_r[mask] /= count[mask]
-
     return DD_r
 
 
@@ -288,6 +277,5 @@ def pair_corr_bc(GR, GRC, Lx, Ly,
 
     mask = count > 0
     P_r[mask] /= count[mask]
-
     return P_r
 

@@ -38,7 +38,6 @@ def UpdateGR(self, GR, hv, phase, rng, Weight, l, acceptance_rate, count):
             acceptance_rate = (count - 1) * acceptance_rate / count
     return GR, hv, phase, Weight, acceptance_rate, count
 
-
 def Wrap_upward(self, GR, Bk, inv_Bk, hv, l):
     N_FL = self.N_FL
     for nf in range(N_FL):
@@ -60,7 +59,6 @@ def Wrap_downward(self, GR, Bk, inv_Bk, hv, l):
         GR[:, :, nf] = inv_B_prev @ GR[:, :, nf] @ B_prev
 
     return GR, hv
-
 
 def WrapGRup(self, GR, Bk, inv_Bk, hv, phase, rng, Weight, l, acceptance_rate, count):
     GR, hv = Wrap_upward(self, GR, Bk, inv_Bk, hv, l)

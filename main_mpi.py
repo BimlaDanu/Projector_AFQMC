@@ -18,7 +18,6 @@ from control_mod import Control_precisionG, Control_precisionP
 from obser import Obser
 from mpi4py import MPI
 
-
 def Main(self, This, tun_params):
     # ================= MPI INIT =================
     comm = MPI.COMM_WORLD

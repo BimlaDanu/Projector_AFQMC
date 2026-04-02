@@ -24,7 +24,6 @@ def square_lattice(Lx, Ly):
             site += 1
     return loc, label
 
-
 def find_site_index(loc, target, Lx, Ly):
     """Find the index in the `loc` array corresponding to the target position."""
     for m in range(Lx):
@@ -58,7 +57,6 @@ def projector(t, Lx, Ly):
             ham[s1][s1y] -= t*(1.-epsl)
             ham[s1y][s1] -= t*(1.-epsl)     
     return ham
-
 
 def Hubbard_projector_mord_square(t, Lx, Ly, mu, m_ord, spin):
     #ham = np.zeros((Lx * Ly, Lx * Ly), dtype=float)

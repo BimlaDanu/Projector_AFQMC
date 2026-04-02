@@ -273,25 +273,3 @@ def generate_hubbard_hopping_nf(t, t_prime, mu, Lx, Ly, NFL):
         spin = 1 - 2 * nf  # Alternating spin values (1, -1)
         Ht_nf[:, :, nf] =  Hubbard_hop_ham(t, t_prime, mu, Lx, Ly)
     return Ht_nf
-#if __name__ == "__main__":
-   # t = 1.
-    #t_prime = 0.
-    #Lx = 2
-    #Ly = 2
-    #mu = 0.
-    #m_ord = 2.
-    #Delta_ord = 0.
-    #epsl = 0.
-    #spin = -0
-    #ham_mf =Hubbard_meanfield_ham(t, t_prime, mu, Lx, Ly, m_ord, Delta_ord)
-    #ham_mf = Hubbard_ham_morder(t, Lx, Ly, m_ord)
-    #print(ham_mf.shape)
-    #print(ham_mf)
-    #HP = Hubbard_projector_mord_square(t, Lx, Ly, epsl, m_ord, spin)
-    #print(HP.shape)
-    #print(HP)
-    
-    #HPS, P0, P = generate_hubbard_data(t, Lx, Ly, epsl, m_ord, mu, NFL)
-    #print("HPS (Hamiltonians):", HPS)
-    #print("P0 (Eigenvectors):", P0)
-    #print("P (Projections):", P)
