@@ -22,32 +22,14 @@ class ModelParams():
         self.N_FL: int = 2
         self.Per: bool = True #False
         self.Corr_all: bool = True 
-        #self.Corr_all: bool = False
         
         self.Hop_tau: bool = False
-        #self.Hint_tau: bool = False 
-        
-        #self.Hop_tau: bool = True
         self.Hint_tau: bool = True 
-        #
-        #
-        #
+    
         self.ladder: bool = True # False
         self.bc_x: str = 'open' # Periodic
         self.bc_y: str = 'open' # Periodic
-        #
-        #
-        #
-        #self.ladder: bool = True # False
-        #self.bc_x: str = 'open' # Periodic
-        #self.bc_y: str = 'periodic' # Periodic
-        #
-        #
-        #
-        #self.ladder: bool = False # False
-        #self.ladder: bool = True
-        #self.bc_x: str = 'periodic' # open
-        #self.bc_y: str = 'periodic' # open
+    
 model_obj = ModelParams()
 
 class LattParams():
@@ -145,7 +127,6 @@ class QMC_Run_Params():
         self.bc_y = str(model_obj.bc_y)
         self.ladder = bool(model_obj.ladder)
         
-        
         # Hamiltonian parameters
         if model_obj.ham_model == 'Hubbard':
             self.Ham_t = float(ham_obj.Ham_t)
@@ -163,7 +144,6 @@ class QMC_Run_Params():
             self.Ham_muf = float(ham_obj.Ham_muf)  
             self.N_part = int(ham_obj.N_part)
             
-        
         # Lattice parameters
         self.Lx = int(latt_obj.Lx)
         self.Ly = int(latt_obj.Ly)
@@ -191,7 +171,6 @@ class QMC_Run_Params():
         self.Ltau_v = int(QMC_obj.Ltau_v) 
         self.slice_m = int(QMC_obj.slice_m) 
         self.restart_enabled = bool(QMC_obj.restart_enabled)
-        
         
         # Analysis parameters
         self.N_skip = int(Ana_obj.N_skip)  # Number of bins for warm-up / burn-in
