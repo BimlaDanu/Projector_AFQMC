@@ -1,5 +1,4 @@
 import numpy as np
-#from  Params_QMC_Sim_regular import *
 class ModelParams():
     def __init__(self):
         # For regular Lattices
