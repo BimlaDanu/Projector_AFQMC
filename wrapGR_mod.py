@@ -1,7 +1,6 @@
 import numpy as np
 import scipy.linalg as la
 
-
 def UpdateGR(self, GR, hv, phase, rng, Weight, l, acceptance_rate, count):
     N_FL = self.N_FL
     Ndim = hv.shape[0]

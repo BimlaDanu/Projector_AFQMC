@@ -117,8 +117,6 @@ def spin_spin_corr_placeholder(GR, GRC, Lx, Ly):
 
     return ZZ_r, ZXY_r, ZZ2XY_r
 
-
-
 #Density-Density correlations
 def density_density_corr(GR, GRC, Lx, Ly):
     """

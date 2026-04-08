@@ -6,7 +6,6 @@ from scipy.linalg import eigh
 def mod(a, b):
     return (a + b) % b
 
-
 def one_dimensional_chain(length, per):
     #if per == True:
     loc = np.zeros((length), dtype = int)
@@ -232,7 +231,6 @@ def Hubbard_hop_ham_1d_chain(t, t_prime, mu, Lx, Per):
         ham[s2x][s1] -=   t_prime
     return ham
 
-
 def Hubbard_hop_ham_square(t, t_prime, mu, Lx, Ly, norb, nlayer): 
     ln = norb*nlayer
     loc, label,  nbr, nnbr =  Square_lattice(Lx, Ly, norb, nlayer, ln)   
@@ -256,7 +254,6 @@ def Hubbard_hop_ham_square(t, t_prime, mu, Lx, Ly, norb, nlayer):
             # Chemical potential term
             ham[s1][s1] -= mu
     return ham
-
 
 def Hubbard_hop_ham_triangular_square(t, t_prime, mu, Lx, Ly, norb, nlayer): 
     ln = norb*nlayer

@@ -84,7 +84,6 @@ def fun(p, n):
     cost = p ** (n - 1)
     return (1.0 - p * cost) / (1.0 - p) / cost
 
-
 def time_dependent_int_2n(n, beta, Ur, dtau, hirsch):
     hi = np.zeros(n)
     nt = 2 * n                    # changed from 2*n+1
@@ -157,10 +156,7 @@ def extract_hi_from_lambdai(lambdai, Ur, hirsch):
         n = (nt - 1) // 2
     else:
         n = (nt - 0) // 2
-        
-
     hi_rec = np.zeros(n)
-
     if hirsch:
         for i in range(n):
             hi_rec[i] = (2.0 / Ur) * np.log(np.cosh(lambdai[i]))
@@ -174,11 +170,9 @@ def extract_hi_from_lambdai(lambdai, Ur, hirsch):
 def compare_hi(hi, hi_rec):
     diff = hi - hi_rec
     rel_err = np.abs(diff) / (np.abs(hi) + 1e-16)
-
     print("Max abs error   :", np.max(np.abs(diff)))
     print("Max rel error   :", np.max(rel_err))
     print("Mean rel error  :", np.mean(rel_err))
-
     return diff, rel_err
 
 def symmetric_ramping(beta, dtau, theta, ham_U, peak_width=3):
@@ -231,7 +225,6 @@ def symmetric_ramping(beta, dtau, theta, ham_U, peak_width=3):
             right = Ltrot - nt
             g_t[left]  = np.arccosh(np.exp(ham_U * hval / 2.0))
             g_t[right] = np.arccosh(np.exp(ham_U * hval / 2.0))
-
     return g_t, peak_indices, Ltrot 
 
 def fixfirst1(nt, beta, Ur, lambdai, hirsch):
@@ -356,7 +349,6 @@ def fixfirst_b(nt, beta, Ur, lambdai, lambdaib, hirsch):
         # Further loop for updating `lambdaib`
         for i in range(1, (nt - 1) // 2):
             lambdaib[i] -= 2.0 * costb * lambdai[i] / U
-
     return lambdai, lambdaib
 
 
@@ -445,44 +437,6 @@ def time_dependent_int_b(Ur, n, beta, betan, dtau, dtaun, hi, hin, gamma, lambda
 #    hirsch = True
 
 #    hi, ti, lambdai = time_dependent_int(n, beta, Ur, dtau, hirsch)
-
     # Printing results
 #    print('t=', ti)
-#    print('h=', hi)
-#    print('l=', lambdai)
 
-    # Plotting
-#    plt.figure(figsize=(12, 6))
-    # Plot ti
-#    plt.subplot(1, 3, 1)
-#    plt.plot(ti, marker='o', linestyle='-')
-#    plt.title('ti')
-#    plt.xlabel('Number of time slices')
-#    plt.ylabel('$t(i)$')
-
-    # Plot hi
-#    plt.subplot(1, 3, 2)
-#    plt.plot(hi, marker='o', linestyle='-')
-#    plt.title('hi')
-#    plt.xlabel('Number of time slices')
-#    plt.ylabel('$h(i)$')
-
-    # Plot lambdai
-#    plt.subplot(1, 3, 3)
-#    plt.plot(lambdai, marker='o', linestyle='-')
-#    plt.title('lambdai')
-#    plt.xlabel('Number of time slices')
-#    plt.ylabel('$\lambda (i)$')
-
-    # Print the optimized values
-#    print('Optimized hi:')
-#    sum=0.0
-#    for i in range(0,n):
-#        print(i, hi[i], np.sum(hi[i]), dtau)
-#        sum+= np.sum(hi[i])
-#    print('sum=', sum, sum, beta/2, n, n/dtau)
-
-
-
-
-    

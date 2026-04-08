@@ -1,4 +1,5 @@
 import numpy as np
+
 def Control_precisionG(self, GR, GR_test, deltaG_threshold, deltaG_max, deltaG_mean, count):
     if np.any(np.isnan(GR)) or np.any(np.isnan(GR_test)):
         raise Exception('Calculation aborted, NaN in GR detected')

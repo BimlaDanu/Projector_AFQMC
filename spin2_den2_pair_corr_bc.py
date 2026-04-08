@@ -188,7 +188,6 @@ def spin_spin_corr_full_bc(GR, GRC, Lx, Ly):
     return ZZ, ZXY, ZZ2XY
 
 def density_density_corr_bc(GR, GRC, Lx, Ly, bc_x="periodic", bc_y="periodic"):
-
     Nsite = Lx * Ly
     loc, label = square_lattice(Lx, Ly)
 

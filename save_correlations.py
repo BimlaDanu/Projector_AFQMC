@@ -11,7 +11,6 @@ def save_spin_correlations_placeholder(self, observable_eq_array, observable_eq_
     File format:
     dx dy r corr std
     """
-
     avg_spinZZ_total = observable_eq_array[0]
     avg_spinXY_total = observable_eq_array[1]
     avg_spinT_total  = observable_eq_array[2]
@@ -81,7 +80,6 @@ def save_spin_correlations_placeholder(self, observable_eq_array, observable_eq_
 
                 f.write(f"{dx} {dy} {r:.6f} {corr:.6f} {std:.6f}\n")
                 
-
 def save_density_correlations_placeholder(self, DD_array, DD_std_array, Ndim, epoch):
     """
     Save r-resolved density-density correlations.
@@ -117,7 +115,6 @@ def save_density_correlations_placeholder(self, DD_array, DD_std_array, Ndim, ep
                 corr = DD_array[dx, dy]
                 std = DD_std_array[dx, dy] if DD_std_array is not None else 0.0
                 f.write(f"{dx} {dy} {r:.6f} {corr:.6f} {std:.6f}\n")
-
 
 def save_pair_correlations_placeholder(self, P_array, P_std_array, Ndim, epoch, pairing='s'):
     """

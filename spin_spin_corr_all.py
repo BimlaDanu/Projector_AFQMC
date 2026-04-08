@@ -148,8 +148,6 @@ def save_spin_correlations_full_r(self,
     write_file(f"spin-total_Ndim{Ndim}_Npart{self.N_part}_U{self.Ham_U}_epoch{epoch}.txt",
                avg_spinT_total, avg_spinT_std)
     
-    
-    
 # --------------------------------------------------------
 # Save spin-spin correlations as (i, j, r=j-i>0)
 # --------------------------------------------------------

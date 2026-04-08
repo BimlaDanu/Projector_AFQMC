@@ -60,8 +60,6 @@ def Main(self, This, tun_params):
     
     K, Bk, inv_Bk, Bk_root, inv_Bk_root, P, lambda_array, Ltrot = Hamiltonian(self, This, tun_params)
     #print('K =',K)
-    
-        
     # ================= BIN DECOMPOSITION =================
     bins_per_rank = Nbin // size
     remainder = Nbin % size
@@ -98,8 +96,6 @@ def Main(self, This, tun_params):
     #stab_do = np.roll(stab_up, Ltrot % Nwrap)
     len_array = np.diff(np.insert(np.where(stab_up)[0], 0, -1))
     # -------------------------------
-
-    
     # Initialize auxiliary field with random configuration 
     # ================= RNG (rank-dependent) =================
     rng = np.random.default_rng(12345 + 100000 * rank)

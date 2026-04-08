@@ -175,7 +175,6 @@ def Hubbard_projector_mord_ladder(t, Lx, Ly, mu, m_ord, spin, bc_x, bc_y):
 
     return ham
 
-
 def trial_wavefunction_Hubbard(t, Lx, Ly, m_ord, mu, NFL, n_part, bc_x, bc_y):
     """
     Generate Hubbard Hamiltonians, eigenvectors, and projections for a square lattice.

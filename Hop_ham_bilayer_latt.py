@@ -136,7 +136,6 @@ def Bilayer_honeycomb_lattice(Lx, Ly, norb, nlayer):
                 nnbr[s1][5] = loc[mod(m+1, Lx)][mod(n-1, Ly)][1][layer]
     return  loc, label, nbr, lnbr, nnbr
 
-
 def Bilayer_kagome_lattice(Lx, Ly, norb, nlayer):
     loc = np.zeros((Lx, Ly, norb,  nlayer), dtype = int)
     label = np.zeros((Lx * Ly * norb * nlayer, 4), dtype = int)
@@ -229,7 +228,6 @@ def Anderson_hop_ham_bilayer_square(t, t_prime, V_ex, mu_f, mu_c, Lx, Ly, norb, 
             ham[ls12][ls1] +=   V_ex       
     return ham
 
-
 def Anderson_projector_bilayer_square(t, V_ex, Lx, Ly, norb, nlayer): 
     epsl = 0.0001
     ln = norb*nlayer
@@ -290,7 +288,6 @@ def  Anderson_hop_ham_bilayer_triangular(t, t_prime,  V_ex, mu_c, mu_f, Lx, Ly, 
             ham[ls1][ls12] +=   V_ex
             ham[ls12][ls1] +=   V_ex   
     return ham
-
 
 
 def  Anderson_hop_ham_bilayer_triangular_square(t, t_prime, V_ex, mu_f, mu_c, Lx, Ly, norb, nlayer): 
@@ -409,8 +406,6 @@ def Anderson_hop_ham_bilayer_honeycomb(t, t_prime, mu_c, mu_f, V_ex, Lx, Ly, nor
                     ham[ls12][ls1] +=   V_ex             
     return ham
 
-
-
 def Anderson_hop_ham_bilayer_kagome(t, t_prime, mu_c, mu_f, V_ex, Lx, Ly, norb, nlayer):
     ham = np.zeros((Lx * Ly * norb*nlayer, Lx * Ly * norb*nlayer), dtype = float)
     loc, label,   nbr,   lnbr,    nnbr =  Bilayer_kagome_lattice(Lx, Ly, norb, nlayer)
@@ -503,7 +498,3 @@ def plot_eigenvalues(eigenvalues):
 #    nlayer = 2
 #    Per = True
 #    #lattice_type = 'Bilayer_Square'
-#    lattice_type = 'Bilayer_Triangular'
-    #lattice_type = 'Bilayer_Honeycomb'
-    #lattice_type = 'Bilayer_Kagome'
-

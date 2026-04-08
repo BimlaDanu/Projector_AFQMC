@@ -1,6 +1,7 @@
 import numpy as np
 #from wrap_mod import Strat_once_up, Strat_once_do, Wrap
 from wrap_mod import Strat_once_up, Strat_once_do, Wrap, Strat_once_up0, Strat_once_do0
+
 def Update_stack_up(self, Bk, hv, UDVst, len1, P, UDVr, FP_list, nst, nstm, l_start, l_end):
         N_FL = self.N_FL        
         # Update UDVr

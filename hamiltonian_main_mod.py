@@ -29,7 +29,6 @@ def Hamiltonian(self, This, tun_params):
     #Ltrot = Thtrot + 2 * Thtrot
     Ltrot =    self.slice_m + 2 * Thtrot
     
-
     if not self.Hint_tau:
         U_array = self.Ham_U * np.ones(Ltrot)
         lambda_array = np.arccosh(np.exp(U_array * dtau / 2))
@@ -49,7 +48,6 @@ def Hamiltonian(self, This, tun_params):
         #plt.show()
         plt.clf()
         
- 
     ## Time dependent hopping
     #if not self.Adiabatic and  not self.Hop_tau:
     if  not self.Hop_tau:
